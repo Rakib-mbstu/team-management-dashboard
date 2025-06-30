@@ -3,7 +3,7 @@ import TeamMember from "./TeamMember";
 
 function SubTeams() {
   return (
-    <div className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+    <div className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 gap-1">
       <div className="flex text-violet-500 font-semibold flex-start m-2">
         FrontEnd Team
       </div>
@@ -18,7 +18,7 @@ function SubTeams() {
         </div>
         <span className="ml-auto text-sm text-gray-500">5 members</span>
       </div>
-      <div>
+      <div className="flex flex-wrap">
         <TeamMember />
         <TeamMember />
         <TeamMember />
