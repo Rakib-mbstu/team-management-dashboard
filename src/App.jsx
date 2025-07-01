@@ -5,8 +5,10 @@ import "./App.css";
 import Teams from "./components/Teams";
 import Footer from "./components/Footer";
 import Summery from "./components/Summery";
+import teams from "./data/teams.js";
 function App() {
   const [count, setCount] = useState(0);
+  console.log("Teams data:", teams);
 
   return (
     <>
@@ -19,7 +21,18 @@ function App() {
             Manage your organization's teams and members
           </p>
         </div>
-        <Teams />
+        {teams.map((team) => {
+          return (
+            <Teams
+              key={team.id}
+              name={team.name}
+              description={team.description}
+              teamLead={team.teamLead}
+              stats={team.stats}
+              subTeams={team.subTeams}
+            />
+          );
+        })}
         <Summery />
         <Footer />
       </div>

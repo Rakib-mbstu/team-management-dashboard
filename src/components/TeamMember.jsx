@@ -49,9 +49,9 @@ function TeamMember({}) {
           skills: [
             { name: "React", rating: 5 },
             { name: "Next.js", rating: 4 },
-            // { name: "Tailwind CSS", rating: 4 },
-            // { name: "Node.js", rating: 3 },
-            // { name: "TypeScript", rating: 2 },
+            { name: "Tailwind CSS", rating: 4 },
+            { name: "Node.js", rating: 3 },
+            { name: "TypeScript", rating: 2 },
           ],
         }}
       />

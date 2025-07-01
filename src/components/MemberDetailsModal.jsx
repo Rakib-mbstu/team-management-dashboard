@@ -18,16 +18,17 @@ function MemberDetailsModal({ open, onClose, member }) {
     (sum, skill) => sum + skill.rating,
     0
   );
+
   const ratingPercent = Math.round((totalStars / totalPossible) * 100);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/60">
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 w-full max-w-md p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-blue-700">{member.name}</h2>
           <button
             onClick={() => onClose()}
-            className="text-red-700 hover:text-gray-700 text-2xl font-bold"
+            className="text-gray-400 hover:text-gray-700 text-2xl font-bold"
           >
             &times;
           </button>
