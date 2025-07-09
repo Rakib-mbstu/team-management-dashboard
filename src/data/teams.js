@@ -4,19 +4,155 @@ export const teams = [
         name: "InfoImage PD",
         membersCount: 25,
         description: "This team is responsible for product development and design. Does some other stuff too.",
-        teamLead: 101, // links to expertise id
-        stats: { members: 10, subTeams: 1 },
+        teamLead: 101,
+        stats: { members: 10, subTeams: 2 },
         subTeams: [
             {
                 id: 11,
                 name: "Frontend Team",
-                lead: 102, // links to expertise id
+                lead: 102,
                 membersCount: 5,
-                members: [102, 103], // expertise ids
+                members: [102, 103, 116, 117, 118],
             },
-            // Add more subTeams as needed
+            {
+                id: 12,
+                name: "UX/UI Team",
+                lead: 119,
+                membersCount: 3,
+                members: [119, 120, 121],
+            },
         ],
     },
-    // Add more teams as needed
+    {
+        id: 2,
+        name: "Backend Team",
+        membersCount: 18,
+        description: "Handles all backend services, APIs, and database management.",
+        teamLead: 104,
+        stats: { members: 8, subTeams: 2 },
+        subTeams: [
+            {
+                id: 21,
+                name: "API Team",
+                lead: 105,
+                membersCount: 4,
+                members: [105, 106, 122, 123],
+            },
+            {
+                id: 22,
+                name: "Database Team",
+                lead: 124,
+                membersCount: 3,
+                members: [124, 125, 126],
+            },
+        ],
+    },
+    {
+        id: 3,
+        name: "DevOps Team",
+        membersCount: 10,
+        description: "Responsible for CI/CD, cloud infrastructure, and deployment.",
+        teamLead: 107,
+        stats: { members: 6, subTeams: 2 },
+        subTeams: [
+            {
+                id: 31,
+                name: "Cloud Ops",
+                lead: 108,
+                membersCount: 3,
+                members: [108, 109, 127],
+            },
+            {
+                id: 32,
+                name: "Automation Ops",
+                lead: 128,
+                membersCount: 2,
+                members: [128, 129],
+            },
+        ],
+    },
+    {
+        id: 4,
+        name: "QA Team",
+        membersCount: 12,
+        description: "Ensures product quality through testing and automation.",
+        teamLead: 110,
+        stats: { members: 7, subTeams: 2 },
+        subTeams: [
+            {
+                id: 41,
+                name: "Automation QA",
+                lead: 111,
+                membersCount: 4,
+                members: [111, 112, 130, 131],
+            },
+            {
+                id: 42,
+                name: "Manual QA",
+                lead: 132,
+                membersCount: 3,
+                members: [132, 133, 134],
+            },
+        ],
+    },
+    {
+        id: 5,
+        name: "Mobile Team",
+        membersCount: 8,
+        description: "Develops and maintains mobile applications.",
+        teamLead: 113,
+        stats: { members: 5, subTeams: 2 },
+        subTeams: [
+            {
+                id: 51,
+                name: "iOS Team",
+                lead: 114,
+                membersCount: 2,
+                members: [114, 115],
+            },
+            {
+                id: 52,
+                name: "Android Team",
+                lead: 135,
+                membersCount: 2,
+                members: [135, 136],
+            },
+        ],
+    },
+    {
+        id: 6,
+        name: "Support Team",
+        membersCount: 7,
+        description: "Provides technical support and resolves user issues.",
+        teamLead: 137,
+        stats: { members: 4, subTeams: 1 },
+        subTeams: [
+            {
+                id: 61,
+                name: "Helpdesk",
+                lead: 138,
+                membersCount: 3,
+                members: [138, 139, 140],
+            },
+        ],
+    },
+    {
+        id: 7,
+        name: "Sales Team",
+        membersCount: 9,
+        description: "Handles client acquisition and business growth.",
+        teamLead: 141,
+        stats: { members: 5, subTeams: 1 },
+        subTeams: [
+            {
+                id: 71,
+                name: "B2B Sales",
+                lead: 142,
+                membersCount: 3,
+                members: [142, 143, 144],
+            },
+        ],
+    },
 ];
+
 export default teams;
