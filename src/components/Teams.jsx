@@ -5,11 +5,21 @@ import { FaPersonHarassing } from "react-icons/fa6";
 import { MdOutlinePersonalVideo } from "react-icons/md";
 import SubTeams from "./SubTeams";
 import { expertise } from "../data/expertise";
-function Teams({ name, description, teamLead, stats, subTeams }) {
-  const teamLeadInfo = expertise.find((member) => member.id === teamLead);
+import { useTeams } from "../context/TeamsContext";
+import { membersData } from "../data/members";
+import { SubTeamsContainer } from "../context/SubTeamsContext";
+function Teams({ teamId }) {
+  const teams = useTeams();
+  const teamInfo = teams.find((team) => team.id === teamId);
+  // const teamLeadInfo = expertise.find((member) => member.id === team.teamLead);
+  // const teamsInfo = teams.filter((t) => t.parentId === teamId);
+  const teamLeadInfo = membersData.find(
+    (member) => member.id === teamInfo.teamLead
+  );
+  const { name, description, stats, subTeamIds } = teamInfo;
 
   return (
-    <div className="grid grid-cols-1 gap-6 w-full">
+    <div className="grid grid-cols-1 gap-6 w-full mb-2">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
         <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-6 text-white">
           <div className="flex items-center justify-between">
@@ -40,7 +50,17 @@ function Teams({ name, description, teamLead, stats, subTeams }) {
             </div>
           </div>
         </div>
-        <SubTeams />
+        {/* {subTeams.map((subTeam) => {
+          return (
+            <SubTeams
+              key={subTeam.id}
+              {...subTeam}
+            />
+          );
+        })} */}
+        <SubTeamsContainer subTeams={subTeamIds} />
+        {/* <SubTeams />
+        <SubTeams /> */}
       </div>
     </div>
   );

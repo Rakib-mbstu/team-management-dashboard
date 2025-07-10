@@ -1,4 +1,3 @@
-// components/MemberSearchHeader.jsx
 import { useState } from "react";
 
 const MemberSearchHeader = ({ onSearch, onFilter }) => {
@@ -33,7 +32,6 @@ const MemberSearchHeader = ({ onSearch, onFilter }) => {
           <option value="all">All Members</option>
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
-          {/* Add more filters as needed, e.g., by role */}
         </select>
       </div>
     </div>

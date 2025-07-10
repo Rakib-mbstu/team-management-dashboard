@@ -1,11 +1,13 @@
 import { FaPersonHarassing } from "react-icons/fa6";
-import TeamMember from "./TeamMember";
+import { membersData } from "../data/members";
+import { TeamMemberContainer } from "../context/TeamMemberContext";
 
-function SubTeams() {
+function SubTeams({ name, lead, membersCount, members }) {
+  const teamLead = membersData.find((member) => member.id === lead);
   return (
-    <div className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 gap-1">
+    <div className="border-[1.5px] border-violet-500 rounded-lg m-4 p-4 hover:bg-gray-50 gap-1">
       <div className="flex text-violet-500 font-semibold flex-start m-2">
-        FrontEnd Team
+        {name}
       </div>
       <div className="flex items-center mb-3">
         <span className="text-2xl mr-3">
@@ -13,16 +15,23 @@ function SubTeams() {
           <FaPersonHarassing />{" "}
         </span>
         <div className="flex flex-col">
-          <span className="text-lg">Faki bro</span>
-          <p className="text-sm">Team lead</p>
+          <span className="text-lg">{teamLead.name}</span>
+          <p className="text-sm">{teamLead.role}</p>
         </div>
-        <span className="ml-auto text-sm text-gray-500">5 members</span>
+        <span className="ml-auto text-sm text-gray-500">
+          {membersCount} members
+        </span>
       </div>
       <div className="flex flex-wrap">
-        <TeamMember />
-        <TeamMember />
-        <TeamMember />
-        <TeamMember />
+        {/* {memberInfo.map((member) => {
+          return (
+            <TeamMember
+              key={member.id}
+              {...member}
+            />
+          );
+        })} */}
+        <TeamMemberContainer teamMembers={members} />
       </div>
     </div>
   );

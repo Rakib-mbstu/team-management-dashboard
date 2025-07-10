@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FaPersonRifle } from "react-icons/fa6";
 import MemberDetailsModal from "./MemberDetailsModal";
-function TeamMember({}) {
+
+function TeamMember({ name, role, experience, skills, status }) {
   const [openModal, setOpenModal] = useState(false);
 
   const getStatusColor = (status) => {
@@ -23,15 +24,15 @@ function TeamMember({}) {
                 <FaPersonRifle />
               </span>
               <div className="flex flex-col items-start text-xs">
-                <div className="font-medium">Masudur</div>
-                <div className="text-gray-600">React/Next Js dev</div>
+                <div className="font-medium">{name}</div>
+                <div className="text-gray-600">{role}</div>
               </div>
               <span
                 className={`px-2 py-1 rounded text-xs mt-1 ${getStatusColor(
-                  "active"
+                  status
                 )}`}
               >
-                {"active"}
+                {status}
               </span>
             </div>
           </div>
@@ -43,16 +44,10 @@ function TeamMember({}) {
           setOpenModal(false);
         }}
         member={{
-          name: "Masudur",
-          role: "React/Next Js dev",
-          experience: 3,
-          skills: [
-            { name: "React", rating: 5 },
-            { name: "Next.js", rating: 4 },
-            { name: "Tailwind CSS", rating: 4 },
-            { name: "Node.js", rating: 3 },
-            { name: "TypeScript", rating: 2 },
-          ],
+          name: name,
+          role: role,
+          experience: experience,
+          skills: skills,
         }}
       />
     </div>
