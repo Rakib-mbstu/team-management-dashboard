@@ -7,9 +7,11 @@ import SubTeams from "./SubTeams";
 import { expertise } from "../data/expertise";
 import { useTeams } from "../context/TeamsContext";
 import { membersData } from "../data/members";
-import { SubTeamsContainer } from "../context/SubTeamsContext";
+import { SubTeamsContainer } from "./SubTeamsContainer";
 function Teams({ teamId }) {
-  const teams = useTeams();
+  const { teams } = useTeams();
+  console.log("Teams component rendered with teamId:", JSON.stringify(teams));
+
   const teamInfo = teams.find((team) => team.id === teamId);
   // const teamLeadInfo = expertise.find((member) => member.id === team.teamLead);
   // const teamsInfo = teams.filter((t) => t.parentId === teamId);
@@ -50,17 +52,7 @@ function Teams({ teamId }) {
             </div>
           </div>
         </div>
-        {/* {subTeams.map((subTeam) => {
-          return (
-            <SubTeams
-              key={subTeam.id}
-              {...subTeam}
-            />
-          );
-        })} */}
         <SubTeamsContainer subTeams={subTeamIds} />
-        {/* <SubTeams />
-        <SubTeams /> */}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Summary from "./components/Summary.jsx";
 import { teams } from "./data/teams.js";
 import DashboardHeader from "./components/DashboardHeader.jsx";
-import { TeamsContainer, TeamsProvider } from "./context/TeamsContext.jsx";
+import TeamsContainer from "./components/TeamsContainer.jsx";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -36,14 +36,6 @@ function App() {
       <div className="flex flex-col justify-between items-end mb-8">
         <DashboardHeader />
       </div>
-      {/* <TeamsProvider teams={teams}>
-        {teams.map((team) => (
-          <Teams
-            key={team.id}
-            teamId={team.id}
-          />
-        ))}
-      </TeamsProvider> */}
       <TeamsContainer />
       <Summary
         totalTeams={totalTeams}

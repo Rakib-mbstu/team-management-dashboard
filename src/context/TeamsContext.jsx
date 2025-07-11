@@ -1,25 +1,25 @@
-import { createContext, useContext } from "react";
-import Teams from "../components/Teams";
-import teams from "../data/teams";
+import { createContext, useContext, useReducer } from "react";
+import { teams as initialTeams } from "../data/teams";
 
 export const TeamsContext = createContext();
 
-export const TeamsProvider = ({ children }) => {
-  return (
-    <TeamsContext.Provider value={teams}>{children}</TeamsContext.Provider>
-  );
-};
+function teamsReducer(state, action) {
+  switch (action.type) {
+    case "ADD_TEAM":
+      return [...state, action.payload];
+    case "REMOVE_TEAM":
+      return state.filter((team) => team.id !== action.payload.id);
+    default:
+      return state;
+  }
+}
 
-export const TeamsContainer = ({ children }) => {
+export const TeamsProvider = ({ children }) => {
+  const [teams, teamDispatch] = useReducer(teamsReducer, initialTeams);
   return (
-    <TeamsProvider>
-      {teams.map((team) => (
-        <Teams
-          key={team.id}
-          teamId={team.id}
-        />
-      ))}
-    </TeamsProvider>
+    <TeamsContext.Provider value={{ teams, teamDispatch }}>
+      {children}
+    </TeamsContext.Provider>
   );
 };
 

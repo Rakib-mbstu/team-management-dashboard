@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 import { membersData } from "../data/members";
 import TeamMember from "../components/TeamMember";
