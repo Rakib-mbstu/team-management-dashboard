@@ -1,6 +1,6 @@
 import { FaPersonHarassing } from "react-icons/fa6";
 import { membersData } from "../data/members";
-import { TeamMemberContainer } from "../context/TeamMemberContext";
+import { TeamMemberContainer } from "./TeamMemberContainer";
 
 function SubTeams({ name, lead, membersCount, members }) {
   const teamLead = membersData.find((member) => member.id === lead);

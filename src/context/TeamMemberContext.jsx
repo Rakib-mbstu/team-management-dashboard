@@ -1,53 +1,75 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useReducer } from "react";
 
-import { membersData } from "../data/members";
-import TeamMember from "../components/TeamMember";
-import { skills } from "../data/skills";
+import { membersData as initialMembers } from "../data/members";
+import { skills as initialSkills } from "../data/skills";
 
 export const TeamMemberContext = createContext();
-export const skillsData = createContext(skills);
+export const SkillsData = createContext();
+
+function memberReducer(state, action) {
+  switch (action.type) {
+    case "ADD_MEMBER":
+      return [...state, action.payload];
+    case "UPDATE_MEMBER":
+      return state.map((member) =>
+        member.id === action.payload.id
+          ? { ...member, ...action.payload }
+          : member
+      );
+    case "REMOVE_MEMBER":
+      return state.filter((member) => member.id !== action.payload.id);
+    default:
+      return state;
+  }
+}
+
+function skillReducer(state, action) {
+  switch (action.type) {
+    case "ADD_SKILLS":
+      return [
+        ...state,
+        { memberId: action.payload.memberId, skills: action.payload.skills },
+      ];
+    case "UPDATE_SKILLS":
+      return state.map((entry) =>
+        entry.memberId === action.payload.memberId
+          ? { ...entry, skills: action.payload.skills }
+          : entry
+      );
+    case "REMOVE_SKILLS":
+      return state.filter(
+        (entry) => entry.memberId !== action.payload.memberId
+      );
+    default:
+      return state;
+  }
+}
 
 export const TeamMemberProvider = ({ children }) => {
+  const [membersData, memberDispatch] = useReducer(
+    memberReducer,
+    initialMembers
+  );
   return (
-    <TeamMemberContext.Provider value={{ membersData }}>
+    <TeamMemberContext.Provider value={{ membersData, memberDispatch }}>
       {children}
     </TeamMemberContext.Provider>
   );
 };
 
-const SkillDataProvider = ({ children }) => {
+export const SkillDataProvider = ({ children }) => {
+  const [skills, skillDispatch] = useReducer(skillReducer, initialSkills);
   return (
-    <skillsData.Provider value={{ skills }}>{children}</skillsData.Provider>
-  );
-};
-
-export const TeamMemberContainer = ({ teamMembers }) => {
-  const memberInfo = membersData.filter((member) =>
-    teamMembers.includes(member.id)
-  );
-  if (memberInfo.length === 0) {
-    return <p className="text-gray-500">No team members found.</p>;
-  }
-  const memberInfoWithSkills = memberInfo.map((member) => {
-    const memberSkills = skills.find((skill) => member.id === skill.memberId);
-    return {
-      ...member,
-      skills: memberSkills.skills || [],
-    };
-  });
-
-  return (
-    <SkillDataProvider>
-      {memberInfoWithSkills.map((member) => (
-        <TeamMember
-          key={member.id}
-          {...member}
-        />
-      ))}
-    </SkillDataProvider>
+    <SkillsData.Provider value={{ skills, skillDispatch }}>
+      {children}
+    </SkillsData.Provider>
   );
 };
 
 export const useTeamMember = () => {
   return useContext(TeamMemberContext);
+};
+
+export const useSkills = () => {
+  return useContext(SkillsData);
 };
