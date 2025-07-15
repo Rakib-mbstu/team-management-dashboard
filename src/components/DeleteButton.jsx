@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
 
 function DeleteButton({ onClick }) {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +17,7 @@ function DeleteButton({ onClick }) {
         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-700 bg-red-50 border border-red-400 rounded-md hover:bg-red-100 hover:text-red-800 hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:bg-red-200 focus:text-red-900 active:bg-red-300 transition-all duration-200 ease-in-out"
         title="Remove from this team only"
       >
-        <FaDeleteLeft size={16} />
+        <MdDelete size={16} />
         <span>Delete</span>
       </button>
 
