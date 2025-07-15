@@ -26,7 +26,7 @@ const AddTeamModal = () => {
 
   // Sub-teams state
   const [subTeams, setSubTeams] = useState([]);
-  const [activeTab, setActiveTab] = useState("main"); // "main" or "subteams"
+  const [activeTab, setActiveTab] = useState("main");
 
   const filteredMembers = availableMembers.filter(
     (member) =>

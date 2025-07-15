@@ -8,8 +8,18 @@ function subTeamsReducer(state, action) {
   switch (action.type) {
     case "ADD_SUB_TEAM":
       return [...state, action.payload];
-    case "REMOVE_SUB_TEAM":
+    case "DELETE_SUB_TEAM":
       return state.filter((team) => team.id !== action.payload.id);
+    case "UPDATE_SUB_TEAM": {
+      const exists = state.some((team) => team.id === action.payload.id);
+      if (exists) {
+        return state.map((team) =>
+          team.id === action.payload.id ? { ...team, ...action.payload } : team
+        );
+      } else {
+        return [...state, action.payload];
+      }
+    }
     default:
       return state;
   }

@@ -7,6 +7,10 @@ function teamsReducer(state, action) {
   switch (action.type) {
     case "ADD_TEAM":
       return [...state, action.payload];
+    case "UPDATE_TEAM":
+      return state.map((team) =>
+        team.id === action.payload.id ? { ...team, ...action.payload } : team
+      );
     case "REMOVE_TEAM":
       return state.filter((team) => team.id !== action.payload.id);
     default:

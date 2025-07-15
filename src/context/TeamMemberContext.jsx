@@ -37,16 +37,14 @@ export const TeamMemberContainer = ({ teamMembers }) => {
   });
 
   return (
-    <TeamMemberProvider>
-      <SkillDataProvider>
-        {memberInfoWithSkills.map((member) => (
-          <TeamMember
-            key={member.id}
-            {...member}
-          />
-        ))}
-      </SkillDataProvider>
-    </TeamMemberProvider>
+    <SkillDataProvider>
+      {memberInfoWithSkills.map((member) => (
+        <TeamMember
+          key={member.id}
+          {...member}
+        />
+      ))}
+    </SkillDataProvider>
   );
 };
 

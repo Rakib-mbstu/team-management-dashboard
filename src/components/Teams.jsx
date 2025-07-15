@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsPersonPlusFill } from "react-icons/bs";
 import { FaSquarePersonConfined } from "react-icons/fa6";
 import { FaPersonHarassing } from "react-icons/fa6";
-import { MdOutlinePersonalVideo } from "react-icons/md";
+import { MdEdit, MdOutlinePersonalVideo } from "react-icons/md";
 import SubTeams from "./SubTeams";
 import { expertise } from "../data/expertise";
 import { useTeams } from "../context/TeamsContext";
 import { membersData } from "../data/members";
 import { SubTeamsContainer } from "./SubTeamsContainer";
+import EditTeamModal from "./EditTeamModal";
+import DeleteButton from "./DeleteButton";
 function Teams({ teamId }) {
-  const { teams } = useTeams();
-  console.log("Teams component rendered with teamId:", JSON.stringify(teams));
+  const { teams, teamDispatch } = useTeams();
+  const [editModalOpen, setEditModalOpen] = useState(false);
 
   const teamInfo = teams.find((team) => team.id === teamId);
   // const teamLeadInfo = expertise.find((member) => member.id === team.teamLead);
@@ -19,6 +21,15 @@ function Teams({ teamId }) {
     (member) => member.id === teamInfo.teamLead
   );
   const { name, description, stats, subTeamIds } = teamInfo;
+
+  const onClickDelete = () => {
+    teamDispatch({
+      type: "REMOVE_TEAM",
+      payload: {
+        id: teamId,
+      },
+    });
+  };
 
   return (
     <div className="grid grid-cols-1 gap-6 w-full mb-2">
@@ -44,15 +55,30 @@ function Teams({ teamId }) {
               <p className="text-sm">{teamLeadInfo.role}</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-4 text-sm justify-between">
             <div className="flex items-center gap-1">
               <BsPersonPlusFill /> <span> {stats.members} Members</span>
               <MdOutlinePersonalVideo />
               <span className="pr-2">{stats.subTeams} Sub Teams</span>
             </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setEditModalOpen(true)}
+                className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+              >
+                <MdEdit className="mr-2" />
+                Edit Team
+              </button>
+              <DeleteButton onClick={onClickDelete} />
+            </div>
           </div>
         </div>
         <SubTeamsContainer subTeams={subTeamIds} />
+        <EditTeamModal
+          team={teamInfo}
+          isOpen={editModalOpen}
+          onClose={() => setEditModalOpen(false)}
+        />
       </div>
     </div>
   );
